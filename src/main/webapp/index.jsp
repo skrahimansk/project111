@@ -1,3 +1,5 @@
-<h1> hello sk  rahiman  <h1>
-<h1> welcome to India <h1>
-<h1> hai............<h1>
+<html>
+<body>
+	<h1 style="color: green; font-size: 40px;" align="left"> Mind Circuit Training Institute - We don't just train people; we COACH, MENTOR, and BUILD PEOPLE ! </h1>
+</body>
+</html>
