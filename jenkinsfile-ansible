@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('scm') {
+            steps {
+               git 'https://github.com/skrahimansk/akbar-app-aa.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('bulid') {
+            steps {
+                sh 'npm run bulid --prod'
+            }
+        }
+        stage('ansible-deploy ') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: '72481e5c-8b12-42b5-8a8e-6250fe53a90c', disableHostKeyChecking: true, inventory: 'host.inv', playbook: 'play-deploy.yml', vaultTmpPath: ''
+     
+            }
+        }
+    }
+}
