@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('scm') {
+            steps {
+               git 'https://github.com/skrahimansk/project111.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage('bulid') {
+            steps {
+                sh 'npm run build --prod'
+            }
+        }
+        stage('ansible-deploy ') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: 'c0bc5f58-afb9-43b0-a18c-a673945d8402', disableHostKeyChecking: true, inventory: 'host-inv', playbook: 'play-deploy.yml', vaultTmpPath: ''
+     
+            }
+        }
+    }
+}
